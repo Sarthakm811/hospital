@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+    <title>Admin Dashboard</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        body{
+            background:#f4f8fc;
+            color:#1e293b;
+        }
+
+        .layout{
+            display:flex;
+        }
+
+        /* Sidebar */
+
+        .sidebar{
+
+            width:260px;
+            height:100vh;
+
+            position:fixed;
+            left:0;
+            top:0;
+
+            background:white;
+
+            border-right:1px solid #e2e8f0;
+
+            padding:25px;
+
+            box-shadow:0 0 20px rgba(0,0,0,.05);
+        }
+
+        .sidebar h1{
+
+            text-align:center;
+
+            color:#0ea5e9;
+
+            margin-bottom:10px;
+        }
+
+        .sidebar p{
+
+            text-align:center;
+
+            color:#64748b;
+
+            margin-bottom:35px;
+        }
+
+        .sidebar button{
+
+            width:100%;
+
+            padding:15px;
+
+            margin-top:15px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:#f1f5f9;
+
+            color:#334155;
+
+            text-align:left;
+
+            cursor:pointer;
+
+            transition:.3s;
+        }
+
+        .sidebar button:hover{
+
+            background:#0ea5e9;
+
+            color:white;
+        }
+
+        /* Main */
+
+        .main{
+
+            margin-left:260px;
+
+            width:100%;
+
+            padding:35px;
+        }
+
+        /* Hero */
+
+        .hero{
+
+            background:white;
+
+            padding:35px;
+
+            border-radius:20px;
+
+            box-shadow:0 4px 20px rgba(0,0,0,.08);
+
+            margin-bottom:25px;
+        }
+
+        .hero h2{
+
+            font-size:42px;
+
+            margin-bottom:10px;
+        }
+
+        .hero p{
+
+            color:#64748b;
+        }
+
+        /* Stats */
+
+        .stats{
+
+            display:grid;
+
+            grid-template-columns:
+            repeat(auto-fit,minmax(220px,1fr));
+
+            gap:20px;
+
+            margin-bottom:25px;
+        }
+
+        .stat-card{
+
+            background:white;
+
+            padding:25px;
+
+            border-radius:18px;
+
+            box-shadow:0 4px 20px rgba(0,0,0,.08);
+        }
+
+        .stat-card h2{
+
+            margin-bottom:10px;
+        }
+
+        .stat-card p{
+
+            color:#64748b;
+        }
+
+        /* Sections */
+
+        .section{
+            display:none;
+        }
+
+        .active{
+            display:block;
+        }
+
+        .box{
+
+            background:white;
+
+            padding:30px;
+
+            border-radius:20px;
+
+            box-shadow:0 4px 20px rgba(0,0,0,.08);
+        }
+
+        .box h1{
+
+            margin-bottom:20px;
+        }
+
+        .action-btn{
+
+            padding:14px 24px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:#0ea5e9;
+
+            color:white;
+
+            cursor:pointer;
+
+            font-weight:600;
+        }
+
+        .action-btn:hover{
+
+            background:#0284c7;
+        }
+
+        .card{
+
+            background:white;
+
+            border-left:6px solid #0ea5e9;
+
+            padding:20px;
+
+            border-radius:16px;
+
+            margin-top:15px;
+
+            box-shadow:0 4px 12px rgba(0,0,0,.08);
+        }
+
+        .card h3{
+
+            margin-bottom:10px;
+        }
+
+        .card p{
+
+            margin-top:5px;
+
+            color:#475569;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <h1>Smart health System</h1>
+
+        <p>Admin Portal</p>
+
+        <button onclick="showSection('pendingSection')">
+            👨‍⚕ Pending Doctors
+        </button>
+
+        <button onclick="showSection('usersSection')">
+            👥 All Users
+        </button>
+
+        <button onclick="showSection('appointmentSection')">
+            📅 All Appointments
+        </button>
+
+        <button onclick="logout()">
+            🚪 Logout
+        </button>
+
+    </div>
+
+    <!-- Main -->
+
+    <div class="main">
+
+        <div class="hero">
+
+            <h2>Admin Dashboard</h2>
+
+            <p>
+                Manage doctors, users and appointments
+                from one centralized healthcare platform.
+            </p>
+
+        </div>
+
+        <div class="stats">
+
+            <div class="stat-card">
+
+                <h2>Doctor Approval</h2>
+
+                <p>
+                    Manage doctor registrations and approvals.
+                </p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h2>User Management</h2>
+
+                <p>
+                    View all patients, doctors and admins.
+                </p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h2>Appointments</h2>
+
+                <p>
+                    Monitor all hospital appointments.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Pending Doctors -->
+
+        <div id="pendingSection" class="section active">
+
+            <div class="box">
+
+                <h1>Pending Doctors</h1>
+
+                <button
+                    class="action-btn"
+                    onclick="loadPendingDoctors()">
+
+                    Load Pending Doctors
+
+                </button>
+
+                <div id="pendingDoctors"></div>
+
+            </div>
+
+        </div>
+
+        <!-- Users -->
+
+        <div id="usersSection" class="section">
+
+            <div class="box">
+
+                <h1>All Users</h1>
+
+                <button
+                    class="action-btn"
+                    onclick="loadUsers()">
+
+                    Load Users
+
+                </button>
+
+                <div id="users"></div>
+
+            </div>
+
+        </div>
+
+        <!-- Appointments -->
+
+        <div id="appointmentSection" class="section">
+
+            <div class="box">
+
+                <h1>All Appointments</h1>
+
+                <button
+                    class="action-btn"
+                    onclick="loadAppointments()">
+
+                    Load Appointments
+
+                </button>
+
+                <div id="appointments"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/admin.js"></script>
+
+<script>
+
+function showSection(sectionId){
+
+    const sections =
+        document.querySelectorAll(".section");
+
+    sections.forEach(section => {
+        section.classList.remove("active");
+    });
+
+    document
+        .getElementById(sectionId)
+        .classList.add("active");
+}
+
+function logout(){
+
+    localStorage.clear();
+
+    window.location.href =
+        "login.html";
+}
+
+</script>
+
+</body>
+</html>
