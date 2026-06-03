@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Register</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        body{
+
+            min-height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            background:#f4f8fc;
+        }
+
+        .register-card{
+
+    width:380px;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 4px 20px rgba(0,0,0,.08);
+}
+
+        .register-card h1{
+
+    font-size:30px;
+
+    color:#0ea5e9;
+
+    margin-bottom:8px;
+}
+
+        .subtitle{
+
+            color:#64748b;
+
+            margin-bottom:25px;
+
+            font-size:15px;
+        }
+
+        .input-group{
+
+            margin-top:18px;
+        }
+
+        .input-group label{
+
+            display:block;
+
+            margin-bottom:8px;
+
+            color:#334155;
+
+            font-size:15px;
+
+            font-weight:500;
+        }
+
+        input,
+        select{
+
+            width:100%;
+
+            padding:12px;
+
+            border:2px solid #dbeafe;
+
+            border-radius:12px;
+
+            background:white;
+
+            color:#1e293b;
+
+            font-size:15px;
+
+            outline:none;
+        }
+
+        input:focus,
+        select:focus{
+
+            border-color:#0ea5e9;
+        }
+
+        .register-btn{
+
+            width:100%;
+
+            padding:12px;
+
+            margin-top:25px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:#0ea5e9;
+
+            color:white;
+
+            font-size:16px;
+
+            font-weight:600;
+
+            cursor:pointer;
+
+            transition:.3s;
+        }
+
+        .register-btn:hover{
+
+            background:#0284c7;
+        }
+
+        .login-link{
+
+            text-align:center;
+
+            margin-top:20px;
+
+            color:#64748b;
+        }
+
+        .login-link a{
+
+            color:#0ea5e9;
+
+            text-decoration:none;
+
+            font-weight:600;
+        }
+
+        .login-link a:hover{
+
+            text-decoration:underline;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="register-card">
+
+    <h1>Create Account</h1>
+
+    <p class="subtitle">
+        Register to access Smart Hospital System
+    </p>
+
+    <div class="input-group">
+
+        <label>Full Name</label>
+
+        <input
+                type="text"
+                id="name"
+                placeholder="Enter Full Name">
+
+    </div>
+
+    <div class="input-group">
+
+        <label>Email Address</label>
+
+        <input
+                type="email"
+                id="email"
+                placeholder="Enter Email">
+
+    </div>
+
+    <div class="input-group">
+
+        <label>Phone Number</label>
+
+        <input
+                type="text"
+                id="phone"
+                placeholder="Enter Phone Number">
+
+    </div>
+
+    <div class="input-group">
+
+        <label>Password</label>
+
+        <input
+                type="password"
+                id="password"
+                placeholder="Enter Password">
+
+    </div>
+
+    <div class="input-group">
+
+        <label>Select Role</label>
+
+        <select id="role">
+
+            <option value="PATIENT">
+                Patient
+            </option>
+
+            <option value="DOCTOR">
+                Doctor
+            </option>
+
+        </select>
+
+    </div>
+
+    <button
+            class="register-btn"
+            onclick="register()">
+
+        Register
+
+    </button>
+
+    <div class="login-link">
+
+        Already have an account?
+
+        <a href="login.html">
+            Login Here
+        </a>
+
+    </div>
+
+</div>
+
+<script src="js/register.js"></script>
+
+</body>
+
+</html>
